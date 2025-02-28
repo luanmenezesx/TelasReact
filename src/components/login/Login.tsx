@@ -2,7 +2,6 @@ import { useState } from "react";
 import { FaUser, FaLock } from "react-icons/fa";
 import { NavLink } from "react-router";
 import { Button } from "@heroui/button";
-import { Input } from "@heroui/react";
 
 import "./Login.css";
 

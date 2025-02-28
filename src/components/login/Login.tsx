@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { FaUser, FaLock } from "react-icons/fa";
 import { NavLink } from "react-router";
+import { Button } from "@heroui/button";
+import { Input } from "@heroui/react";
+
 import "./Login.css";
 
 const Login = () => {
@@ -18,6 +21,7 @@ const Login = () => {
                 <div className="bg-blue-200 p-2 rounded-md text-center mb-[20px] ">
                     Informe email e senha para acessar
                 </div>
+
                 <form onSubmit={handleSubmit}>
                     <div className="relative mt-4 mb-4">
                         <input
@@ -30,6 +34,8 @@ const Login = () => {
                         />
                         <FaUser className="absolute top-3 right-3 text-gray-500" />
                     </div>
+
+
                     <div className="relative mt-4 mb-4">
                         <input
                             type="password"
@@ -41,9 +47,7 @@ const Login = () => {
                         />
                         <FaLock className="absolute top-3 right-3 text-gray-500" />
                     </div>
-                    <button type="submit" className="w-full mt-3 mb--5 bg-blue-500 text-white py-2 rounded-[8px]  hover:bg-blue-600 ">
-                        <NavLink to="/Alunos" className="text-white no-underline  ">Acessar o Sistema</NavLink>
-                    </button>
+                    <Button className="w-full mt-3 mb--5" color="primary" variant="ghost" >Acessar o Sistema</Button>
                 </form>
                 <br />
                 <div className="text-center ">

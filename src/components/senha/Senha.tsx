@@ -2,6 +2,8 @@ import { useState } from "react";
 import { FaLock } from "react-icons/fa";
 import "./Senha.css";
 import { NavLink } from "react-router";
+import { Button } from "@heroui/button";
+
 
 const Senha = () => {
     const [username, setUsername] = useState("");
@@ -42,9 +44,7 @@ const Senha = () => {
                     />
                      <FaLock className="absolute top-3 right-3 text-gray-500" />
                 </div>
-                <button type="submit" className="w-full mt-3 mb--5 bg-blue-500 text-white py-2 rounded-[8px]  hover:bg-blue-600 ">
-                        <NavLink to="/Alunos" className="text-white no-underline  ">Acessar o Sistema</NavLink>
-                    </button>
+                <Button className="w-full mt-3 mb--5" color="primary" variant="ghost" >Acessar o Sistema</Button>
                 </form>
         </div>
         </>

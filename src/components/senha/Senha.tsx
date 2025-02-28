@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { FaLock } from "react-icons/fa";
-import "./Senha.css";
 import { Button } from "@heroui/button";
 
 

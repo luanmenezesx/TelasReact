@@ -3,8 +3,6 @@ import { FaUser, FaLock } from "react-icons/fa";
 import { NavLink } from "react-router";
 import { Button } from "@heroui/button";
 
-import "./Login.css";
-
 const Login = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -29,8 +27,8 @@ const Login = () => {
                             required
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
-                            className="w-full p-2 pr-10 border border-black border-custom-red  rounded-[8px] focus:outline-none"
-                        />
+                            className="w-full h-12 px-4 py-2 bg-transparent outline-none border-2 border-gray-300 rounded-lg focus:border-blue-500 text-black"
+                            />
                         <FaUser className="absolute top-3 right-3 text-gray-500" />
                     </div>
 
@@ -47,7 +45,7 @@ const Login = () => {
                         <FaLock className="absolute top-3 right-3 text-gray-500" />
                     </div>
                     <Button className="w-full mt-3 mb--5" color="primary" variant="ghost" >Acessar o Sistema</Button>
-                </form>
+                    </form>
                 <br />
                 <div className="text-center ">
                     <NavLink to="/Senha" className="text-blue-500 hover:underline">Esqueci minha senha</NavLink>

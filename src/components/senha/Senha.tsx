@@ -15,17 +15,17 @@ const Senha = () => {
             const errors: { password?: string; newPassword?: string } = {};
             
             if (!values.password) {
-                errors.password = "Senha atual é obrigatória";
+                errors.password = "Digite a nova senha";
             } else if (values.password.length < 8) {
                 errors.password = "Senha atual deve ter pelo menos 8 caracteres";
             }
 
             if (!values.newPassword) {
-                errors.newPassword = "Nova senha é obrigatória";
+                errors.newPassword = "Repita a nova senha";
             } else if (values.newPassword.length < 8) {
                 errors.newPassword = "Nova senha deve ter pelo menos 8 caracteres";
-            } else if (values.newPassword === values.password) {
-                errors.newPassword = "Nova senha deve ser diferente da senha atual";
+            } else if (values.newPassword !== values.password) {
+                errors.newPassword = "Nova senha deve ser igual a senha digitada acima";
             }
 
             return errors;

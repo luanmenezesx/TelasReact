@@ -1,9 +1,11 @@
 import { FaUser, FaLock } from "react-icons/fa";
-import { NavLink } from "react-router";
+import { useNavigate } from "react-router"; // Substitua "react-router" por "react-router-dom"
 import { Button } from "@heroui/button";
 import { useFormik } from "formik";
 
 const Login = () => {
+    const navigate = useNavigate(); // Hook para navegação
+
     const formik = useFormik({
         initialValues: {
             username: "",
@@ -28,6 +30,7 @@ const Login = () => {
         onSubmit: (values: any) => {
             alert("Login realizado com sucesso!");
             console.log(values);
+            navigate("/Senha"); // Redireciona para a próxima página
         },
     });
 
@@ -77,13 +80,13 @@ const Login = () => {
                     </div>
 
                     <Button type="submit" className="w-full mt-3" color="primary" variant="ghost">
-                        <NavLink to="/Senha">Acessar o Sistema</NavLink>
+                        Acessar o Sistema
                     </Button>
                 </form>
 
                 <br />
                 <div className="text-center">
-                    <NavLink to="/Senha" className="text-blue-500 hover:underline">Esqueci minha senha</NavLink>
+                    <a href="/Senha" className="text-blue-500 hover:underline">Esqueci minha senha</a>
                 </div>
             </div>
         </>

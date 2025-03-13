@@ -80,7 +80,7 @@ const Login = () => {
                     </div>
 
                     <Button type="submit" className="w-full mt-3" color="primary" variant="ghost">
-                        Acessar o Sistema
+                    <a href="/alunos/:7">Acessar o Sistema</a> 
                     </Button>
                 </form>
 

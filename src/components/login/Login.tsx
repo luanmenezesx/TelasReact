@@ -2,9 +2,12 @@ import { FaUser, FaLock } from "react-icons/fa";
 import { useNavigate } from "react-router"; // Substitua "react-router" por "react-router-dom"
 import { Button } from "@heroui/button";
 import { useFormik } from "formik";
+import { useRef, useState } from "react";
 
 const Login = () => {
     const navigate = useNavigate(); // Hook para navegação
+    const [text, setTex] = useState('');
+    const inputRef = useRef<HTMLInputElement | null>(null);
 
     const formik = useFormik({
         initialValues: {

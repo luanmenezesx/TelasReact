@@ -1,20 +1,20 @@
 import { FaUser, FaLock } from "react-icons/fa";
-import { useNavigate } from "react-router"; // Substitua "react-router" por "react-router-dom"
+import { useNavigate } from "react-router";
 import { Button } from "@heroui/button";
 import { useFormik } from "formik";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
 const Login = () => {
-    const navigate = useNavigate(); // Hook para navegação
-    const [text, setTex] = useState('');
-    const inputRef = useRef<HTMLInputElement | null>(null);
+    const navigate = useNavigate();
+    const usernameRef = useRef<HTMLInputElement | null>(null); // Referência para o campo de e-mail
+    const passwordRef = useRef<HTMLInputElement | null>(null); // Referência para o campo de senha
 
     const formik = useFormik({
         initialValues: {
             username: "",
             password: "",
         },
-        validate: (values: { username: string; password: string | any[]; }) => {
+        validate: (values: { username: string; password: string }) => {
             const errors: { username?: string; password?: string } = {};
             if (!values.username) {
                 errors.username = "E-mail é obrigatório";
@@ -30,12 +30,20 @@ const Login = () => {
 
             return errors;
         },
-        onSubmit: (values: any) => {
+        onSubmit: (values) => {
             alert("Login realizado com sucesso!");
             console.log(values);
-            navigate("/Senha"); // Redireciona para a próxima página
+            navigate("/Senha");
         },
     });
+
+    const handleFocusEmptyFields = () => {
+        if (!formik.values.username && usernameRef.current) {
+            usernameRef.current.focus(); // Foco no campo de e-mail se vazio
+        } else if (!formik.values.password && passwordRef.current) {
+            passwordRef.current.focus(); // Foco no campo de senha se vazio
+        }
+    };
 
     return (
         <>
@@ -45,9 +53,16 @@ const Login = () => {
                     Informe e-mail e senha para acessar
                 </div>
 
-                <form onSubmit={formik.handleSubmit}>
+                <form
+                    onSubmit={(e) => {
+                        e.preventDefault();
+                        handleFocusEmptyFields(); // Chama a função para verificar os campos vazios
+                        formik.handleSubmit();
+                    }}
+                >
                     <div className="relative mt-4 mb-4">
                         <input
+                            ref={usernameRef} // Associação do ref ao campo de e-mail
                             type="text"
                             name="username"
                             placeholder="E-mail..."
@@ -66,6 +81,7 @@ const Login = () => {
 
                     <div className="relative mt-4 mb-4">
                         <input
+                            ref={passwordRef} // Associação do ref ao campo de senha
                             type="password"
                             name="password"
                             placeholder="Senha..."
@@ -83,13 +99,15 @@ const Login = () => {
                     </div>
 
                     <Button type="submit" className="w-full mt-3" color="primary" variant="ghost">
-                    <a href="/alunos/:7">Acessar o Sistema</a> 
+                        Acessar o Sistema
                     </Button>
                 </form>
 
                 <br />
                 <div className="text-center">
-                    <a href="/Senha" className="text-blue-500 hover:underline">Esqueci minha senha</a>
+                    <a href="/Senha" className="text-blue-500 hover:underline">
+                        Esqueci minha senha
+                    </a>
                 </div>
             </div>
         </>

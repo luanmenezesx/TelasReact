@@ -43,6 +43,10 @@ const Login = () => {
         } else if (!formik.values.password && passwordRef.current) {
             passwordRef.current.focus(); // Foco no campo de senha se vazio
         }
+        else (formik.values.password.length < 8 && passwordRef.current); {
+            passwordRef.current!.focus();
+        }
+    
     };
 
     return (

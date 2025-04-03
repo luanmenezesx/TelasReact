@@ -5,6 +5,7 @@ import Senha from './components/senha/Senha.tsx'
 import Login from './components/login/Login.tsx'
 import { BrowserRouter, Routes, Route, useNavigate, useHref } from "react-router";
 import Alunos from './components/alunos/Alunos.tsx'
+import Comentarios from './components/comentarios/Comentarios.tsx'
 import { HeroUIProvider } from '@heroui/react'
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Route path='/' element={<Login />} />
         <Route path='/senha' element={<Senha />} />
         <Route path='/alunos/:idAluno' element={<Alunos />} />
+        <Route path='/Comentarios/:idAluno' element={<Comentarios />} />
       </Routes>
     </HeroUIProvider>
   );

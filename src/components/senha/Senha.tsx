@@ -49,7 +49,7 @@ const Senha = () => {
                     <input
                         type="password"
                         name="password"
-                        placeholder="Senha Atual..."
+                        placeholder="Nova Senha..."
                         value={formik.values.password}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
@@ -67,7 +67,7 @@ const Senha = () => {
                     <input
                         type="password"
                         name="newPassword"
-                        placeholder="Nova Senha..."
+                        placeholder="Repita a nova Senha..."
                         value={formik.values.newPassword}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}

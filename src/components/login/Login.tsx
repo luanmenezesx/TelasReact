@@ -35,52 +35,54 @@ const Login = () => {
         onSubmit: async (values) => {
            const user = await login(values.username, values.password);
            console.log(user)
-            navigate(`/Comentarios/${user.id}`);
+            navigate(`/home`);
         },
     });
 
     return (
-        <div className="w-[450px] bg-gray-200 backdrop-blur-md rounded-lg p-10">
-            <h1 className="text-2xl font-helvetica mb-[20px]">Sistema de Administração Musical</h1>
-            <div className="bg-blue-200 p-2 rounded-md text-center mb-[20px]">
-                Informe e-mail e senha para acessar
+        <div className="flex justify-center items-center min-h-screen bg-gray-100">
+            <div className="w-[450px] bg-gray-200 backdrop-blur-md rounded-lg p-10 shadow-md">
+                <h1 className="text-2xl font-helvetica mb-[20px] text-center">Sistema de Administração Musical</h1>
+                <div className="bg-blue-200 p-2 rounded-md text-center mb-[20px]">
+                    Informe e-mail e senha para acessar
+                </div>
+
+                {error && <div className="bg-red-500 text-white p-2 rounded-md text-center mb-4">{error}</div>}
+
+                <form onSubmit={formik.handleSubmit}>
+                    <div className="relative mt-4 mb-4">
+                        <input
+                            ref={usernameRef}
+                            type="text"
+                            name="username"
+                            placeholder="E-mail..."
+                            value={formik.values.username}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            className="w-full p-2 pr-10 border border-black border-custom-red rounded-[8px] focus:outline-none"
+                        />
+                        <FaUser className="absolute top-3 right-3 text-gray-500" />
+                    </div>
+
+                    <div className="relative mt-4 mb-4">
+                        <input
+                            ref={passwordRef}
+                            type="password"
+                            name="password"
+                            placeholder="Senha..."
+                            value={formik.values.password}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            className="w-full p-2 pr-10 border border-black border-custom-red rounded-[8px] focus:outline-none"
+                        />
+                        <FaLock className="absolute top-3 right-3 text-gray-500" />
+                    </div>
+
+                    <Button type="submit" className="w-full mt-3" color="primary" variant="ghost" disabled={loading}>
+                        {loading ? "Entrando..." : "Acessar o Sistema"}
+                    </Button>
+                </form>
             </div>
-
-            {error && <div className="bg-red-500 text-white p-2 rounded-md text-center mb-4">{error}</div>}
-
-            <form onSubmit={formik.handleSubmit}>
-                <div className="relative mt-4 mb-4">
-                    <input
-                        ref={usernameRef}
-                        type="text"
-                        name="username"
-                        placeholder="E-mail..."
-                        value={formik.values.username}
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        className="w-full p-2 pr-10 border border-black border-custom-red rounded-[8px] focus:outline-none"
-                    />
-                    <FaUser className="absolute top-3 right-3 text-gray-500" />
-                </div>
-
-                <div className="relative mt-4 mb-4">
-                    <input
-                        ref={passwordRef}
-                        type="password"
-                        name="password"
-                        placeholder="Senha..."
-                        value={formik.values.password}
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        className="w-full p-2 pr-10 border border-black border-custom-red rounded-[8px] focus:outline-none"
-                    />
-                    <FaLock className="absolute top-3 right-3 text-gray-500" />
-                </div>
-
-                <Button type="submit" className="w-full mt-3" color="primary" variant="ghost" disabled={loading}>
-                    {loading ? "Entrando..." : "Acessar o Sistema"}
-                </Button>
-            </form>
         </div>
     );
 };

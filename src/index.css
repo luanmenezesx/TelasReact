@@ -1,11 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+  /* 
 :root {
   display: flex;
   justify-content: center;
-  /* Centraliza horizontalmente */
+
   align-items: center;
   flex-direction: column;
   gap: 8rem;
@@ -14,4 +14,4 @@
   background-color: rgb(163, 164, 165);
   background-position: center;
   text-align: center;
-}
+}*/

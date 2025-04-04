@@ -33,8 +33,9 @@ const Login = () => {
             return errors;
         },
         onSubmit: async (values) => {
-            await login(values.username, values.password);
-            navigate("/Senha");
+           const user = await login(values.username, values.password);
+           console.log(user)
+            navigate(`/Comentarios/${user.id}`);
         },
     });
 

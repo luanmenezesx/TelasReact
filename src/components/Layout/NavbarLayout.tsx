@@ -20,8 +20,10 @@ export default function NavbarLayout() {
       {/* Navbar */}
       <Navbar className="shadow-md">
         <NavbarBrand>
-          <AcmeLogo />
-          <p className="font-bold text-inherit">Administração Musical</p>
+          <Link href="/home" className="flex items-center text-inherit">
+            <AcmeLogo />
+            <p className="font-bold text-inherit">Administração Musical</p>
+          </Link>
         </NavbarBrand>
 
         {/* Abas principais */}
@@ -38,7 +40,7 @@ export default function NavbarLayout() {
           </NavbarItem>
         </NavbarContent>
       </Navbar>
-      <Outlet/>
+      <Outlet />
     </div>
   );
 }

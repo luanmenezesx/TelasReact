@@ -14,31 +14,10 @@ export const AcmeLogo = () => {
   );
 };
 
-export default function NavbarLayout() {
+export default function Home() {
   return (
     <div className="min-h-screen bg-gray-100">
-      {/* Navbar */}
-      <Navbar className="shadow-md">
-        <NavbarBrand>
-          <AcmeLogo />
-          <p className="font-bold text-inherit">Administração Musical</p>
-        </NavbarBrand>
-
-        {/* Abas principais */}
-        <NavbarContent className="hidden sm:flex gap-6" justify="center">
-          <NavbarItem>
-            <Link color="foreground" href="comentarios">
-              Comentários
-            </Link>
-          </NavbarItem>
-          <NavbarItem>
-            <Link color="foreground" href="posts">
-              Posts
-            </Link>
-          </NavbarItem>
-        </NavbarContent>
-      </Navbar>
-      <Outlet/>
+     
     </div>
   );
 }

@@ -3,11 +3,11 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import Senha from './components/senha/Senha.tsx'
 import Login from './components/login/Login.tsx'
-import { BrowserRouter, Routes, Route, useNavigate, useHref, RouterProvider, createBrowserRouter, Outlet } from "react-router";
+import { useNavigate, useHref, RouterProvider, createBrowserRouter, Outlet } from "react-router";
 import Alunos from './components/alunos/Alunos.tsx'
 import Comentarios from './components/comentarios/Comentarios.tsx'
 import { HeroUIProvider } from '@heroui/react'
-import Home from './components/Layout/NavbarLayout.tsx'
+import Home from './components/home/Home.tsx'
 import NavbarLayout from './components/Layout/NavbarLayout.tsx'
 
 const router = createBrowserRouter([

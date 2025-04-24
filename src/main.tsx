@@ -9,6 +9,7 @@ import Comentarios from './components/comentarios/Comentarios.tsx'
 import { HeroUIProvider } from '@heroui/react'
 import Home from './components/home/Home.tsx'
 import NavbarLayout from './components/Layout/NavbarLayout.tsx'
+import Posts from './components/posts/Posts.tsx'
 
 const router = createBrowserRouter([
   {
@@ -36,7 +37,12 @@ const router = createBrowserRouter([
           {
             path: '/comentarios',
             element: <Comentarios />
-          }
+          },
+          {
+            path: '/posts',
+            element: <Posts />
+        }
+        
         ]
       }
       

@@ -1,12 +1,38 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Comentarios = () => {
-    const [comentarios, setComentarios] = useState<string[]>([]);
+    const [comentarios, setComentarios] = useState<{ id: number; texto: string; userId: number }[]>([]);
     const [novoComentario, setNovoComentario] = useState("");
+
+    useEffect(() => {
+        async function fetchComentarios() {
+            try {
+                const response = await fetch("https://jsonplaceholder.typicode.com/comments");
+                if (!response.ok) {
+                    throw new Error("Erro ao buscar os comentários!");
+                }
+                const data = await response.json();
+                // Eu estou limitando os comentários
+                const limitedData = data.slice(0, 3).map((item: any) => ({
+                    id: item.id,
+                    texto: item.body,
+                    userId: item.postId,
+                }));
+                setComentarios(limitedData);
+            } catch (error) {
+                console.error("Erro:", Error);
+            }
+        }
+
+        fetchComentarios();
+    }, []);
 
     const adicionarComentario = () => {
         if (novoComentario.trim() !== "") {
-            setComentarios([...comentarios, novoComentario]);
+            setComentarios([
+                ...comentarios,
+                { id: comentarios.length + 1, texto: novoComentario, userId: Math.floor(Math.random() * 10) + 1 }, // Simula ID de usuário
+            ]);
             setNovoComentario("");
         }
     };
@@ -36,9 +62,10 @@ const Comentarios = () => {
                     {comentarios.length === 0 ? (
                         <p className="text-gray-500">Nenhum comentário ainda.</p>
                     ) : (
-                        comentarios.map((comentario, index) => (
-                            <li key={index} className="bg-white p-2 border rounded-md mb-2">
-                                {comentario}
+                        comentarios.map((comentario) => (
+                            <li key={comentario.id} className="bg-white p-2 border rounded-md mb-2">
+                                <p>{comentario.texto}</p>
+                                <p className="text-gray-500 text-sm">ID do usuário: {comentario.userId}</p>
                             </li>
                         ))
                     )}

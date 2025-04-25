@@ -1,9 +1,18 @@
+import { Suspense } from 'react';
 import { FaUser, FaLock } from "react-icons/fa";
 import { useNavigate } from "react-router";
 import { Button } from "@heroui/button";
 import { useFormik } from "formik";
 import { useRef } from "react";
-import useLogin from "../../hooks/useLogin"; // Importa o hook personalizado
+import useLogin from "../../hooks/useLogin"; 
+
+const LoginTeste = () => {
+    return (
+        <Suspense fallback={<CarregandoLogin />}>
+            <Login />
+        </Suspense>
+    );
+};
 
 const Login = () => {
     const navigate = useNavigate();
@@ -33,8 +42,7 @@ const Login = () => {
             return errors;
         },
         onSubmit: async (values) => {
-           const user = await login(values.username, values.password);
-           console.log(user)
+            await login(values.username, values.password);
             navigate(`/home`);
         },
     });
@@ -87,4 +95,13 @@ const Login = () => {
     );
 };
 
-export default Login;
+// Componente de carregamento
+function CarregandoLogin() {
+    return (
+        <div className="flex justify-center items-center min-h-screen bg-gray-100">
+            <p className="text-center text-xl">Carregando login...</p>
+        </div>
+    );
+}
+
+export default LoginTeste;

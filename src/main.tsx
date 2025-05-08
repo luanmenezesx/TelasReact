@@ -52,6 +52,7 @@ const router = createBrowserRouter([
 function App() {
   const navigate = useNavigate();
 
+  
   return (
     <HeroUIProvider navigate={navigate} useHref={useHref}>
       <Outlet />

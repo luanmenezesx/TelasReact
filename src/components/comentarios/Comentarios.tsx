@@ -1,6 +1,5 @@
 import { Suspense, use, useState } from "react";
 import { Skeleton } from "@heroui/skeleton";
-import { div } from "framer-motion/client";
 
 interface Comentario {
     id: number;

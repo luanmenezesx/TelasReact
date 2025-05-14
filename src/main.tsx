@@ -10,6 +10,9 @@ import { HeroUIProvider } from '@heroui/react'
 import Home from './components/home/Home.tsx'
 import NavbarLayout from './components/Layout/NavbarLayout.tsx'
 import Posts from './components/posts/Posts.tsx'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+
+const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
   {
@@ -62,6 +65,8 @@ function App() {
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
+    <QueryClientProvider client={queryClient}>
     <RouterProvider router={router} />
+    </QueryClientProvider>
   </StrictMode>,
 )

@@ -1,5 +1,8 @@
-import { Suspense, use, useState } from "react";
+import { Suspense, useState } from "react";
 import { Skeleton } from "@heroui/skeleton";
+import { ErrorBoundary } from "react-error-boundary";
+import { useQueryErrorResetBoundary, useSuspenseQuery } from "@tanstack/react-query";
+import { div } from "framer-motion/client";
 
 interface Comentario {
     id: number;
@@ -7,11 +10,12 @@ interface Comentario {
     userId: number;
 }
 
-const comentariosPromise = fetchComentarios();
 
 const ComentariosTeste = () => {
+const { reset } = useQueryErrorResetBoundary();
+
     const [novoComentario, setNovoComentario] = useState("");
-    
+
 
     const adicionarComentario = () => {
         if (novoComentario.trim() !== "") {
@@ -45,16 +49,36 @@ const ComentariosTeste = () => {
                         Adicionar Comentário
                     </button>
                 </div>
-                <Suspense fallback={<CarregandoComentarios />}>
-                    <Comentarios comentariosPromise={comentariosPromise} />
-                </Suspense>
+
+                <ErrorBoundary onReset={reset} fallbackRender={({ resetErrorBoundary }) => {
+                    return (
+                     <div className="error-container">
+                        <h2 className="error-title">Erro ao carregar dados</h2>
+                        <p className="error-message">Tente novamente mais tarde</p>
+                        <button className="retry-button" onClick={(() => resetErrorBoundary())}>
+                            Tente Novamente
+                        </button>
+                     </div>
+                    );
+                }}>
+                    <Suspense fallback={<CarregandoComentarios />}>
+                        <Comentarios />
+                    </Suspense>
+                </ErrorBoundary>
             </div>
         </div>
+        
     );
 };
 
-const Comentarios = ({ comentariosPromise }: { comentariosPromise: Promise<Comentario[]> }) => {
-    const comentarios = use(comentariosPromise);
+const Comentarios = () => {
+    const { data: comentarios } = useSuspenseQuery({
+        queryKey: ['Comentários'],
+        queryFn: () => {
+            return fetchComentarios();
+        },
+    });
+
 
     return (
 
@@ -98,22 +122,6 @@ const CarregandoComentarios = () => (
         <p className="text-gray-500 text-sm">ID do usuário: 1</p>
     </li>
 
-    // <div className="justify-center items-center h-full bg-black">
-    //     <Skeleton className="rounded-lg">
-    //         <div className="justify-center items-center bg-black-100" />
-    //     </Skeleton>
-    //     {/* <div className="space-y-3">
-    //         <Skeleton className="w-3/5 rounded-lg">
-    //             <div className="h-3 w-3/5 rounded-lg bg-default-200" />
-    //         </Skeleton>
-    //         <Skeleton className="w-4/5 rounded-lg">
-    //             <div className="h-3 w-4/5 rounded-lg bg-default-200" />
-    //         </Skeleton>
-    //         <Skeleton className="w-2/5 rounded-lg">
-    //             <div className="h-3 w-2/5 rounded-lg bg-default-300" />
-    //         </Skeleton>
-    //     </div> */}
-    // </div>
 
 );
 

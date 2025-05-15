@@ -2,7 +2,6 @@ import { Suspense, useState } from "react";
 import { Skeleton } from "@heroui/skeleton";
 import { ErrorBoundary } from "react-error-boundary";
 import { useQueryErrorResetBoundary, useSuspenseQuery } from "@tanstack/react-query";
-import { div } from "framer-motion/client";
 
 interface Comentario {
     id: number;

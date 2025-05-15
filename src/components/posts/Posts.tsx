@@ -90,7 +90,7 @@ const ListaPosts = () => {
 
 async function fetchPosts(): Promise<Post[]> {
     await new Promise((resolve) => setTimeout(resolve, 2000));
-    const response = await fetch("sdfsdfsd");
+    const response = await fetch("https://jsonplaceholder.typicode.com/posts");
     if (!response.ok) {
         throw new Error("Erro ao buscar os posts!");
     }
